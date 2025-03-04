@@ -1,20 +1,4 @@
-import { useState } from "react";
-export default function UserInput({ label, onInput }) {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 2500,
-    annualInvestment: 125,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function handleChange(inputIdentifier, newValue) {
-    setUserInput((prevUserInput) => {
-      return {
-        ...prevUserInput,
-        [inputIdentifier]: newValue,
-      };
-    });
-  }
+export default function UserInput({ userInput, onInput }) {
   return (
     <>
       <section id="user-input">
@@ -24,7 +8,7 @@ export default function UserInput({ label, onInput }) {
             <input
               type="number"
               onChange={(event) =>
-                handleChange("initialInvestment", event.target.value)
+                onInput("initialInvestment", event.target.value)
               }
               required
               value={userInput.initialInvestment}
@@ -35,7 +19,7 @@ export default function UserInput({ label, onInput }) {
             <input
               type="number"
               onChange={(event) =>
-                handleChange("annualInvestment", event.target.value)
+                onInput("annualInvestment", event.target.value)
               }
               required
               value={userInput.annualInvestment}
@@ -48,7 +32,7 @@ export default function UserInput({ label, onInput }) {
             <input
               type="number"
               onChange={(event) =>
-                handleChange("expectedReturn", event.target.value)
+                onInput("expectedReturn", event.target.value)
               }
               required
               value={userInput.expectedReturn}
@@ -58,7 +42,7 @@ export default function UserInput({ label, onInput }) {
             <label>Duration</label>
             <input
               type="number"
-              onChange={(event) => handleChange("duration", event.target.value)}
+              onChange={(event) => onInput("duration", event.target.value)}
               required
               value={userInput.duration}
             />
